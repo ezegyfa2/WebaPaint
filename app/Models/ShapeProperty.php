@@ -17,7 +17,11 @@ class ShapeProperty extends Model
     /**
      * @var array
      */
-    protected $fillable = ['shape_property_type_id', 'shape_id', 'value'];
+    protected $fillable = [
+        'shape_property_type_id',
+        'shape_id',
+        'value'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
