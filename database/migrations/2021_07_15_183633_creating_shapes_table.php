@@ -19,6 +19,10 @@ class CreatingShapesTable extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('color_id')
                 ->constrained();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
