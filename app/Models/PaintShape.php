@@ -20,7 +20,12 @@ class PaintShape extends Model
     /**
      * @var array
      */
-    protected $fillable = ['paint_id', 'shape_id', 'shape_coordinate_x', 'shape_coordinate_y'];
+    protected $fillable = [
+        'paint_id',
+        'shape_id',
+        'shape_coordinate_x',
+        'shape_coordinate_y',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

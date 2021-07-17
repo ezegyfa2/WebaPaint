@@ -20,7 +20,11 @@ class Shape extends Model
     /**
      * @var array
      */
-    protected $fillable = ['shape_type_id', 'color_id'];
+    protected $fillable = [
+        'shape_type_id',
+        'color_id',
+        'user_id',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
