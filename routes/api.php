@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('users')->group(function() {
     Route::post('login', 'LoginController@login');
+});
+Route::middleware('auth:api')->group(function() {
+    Route::prefix('shapes')->group(function() {
+        Route::get('/', 'ShapeController@index');
+        Route::get('/{id}', 'ShapeController@getShape');
+        Route::post('rectangles/create', 'ShapeController@createRectangle');
+        Route::post('circles/create', 'ShapeController@createCircle');
+    });
+    Route::prefix('paints')->group(function() {
+        Route::get('/', 'PaintController@index');
+        Route::get('/{id}', 'PaintController@getPaint');
+        Route::post('create', 'PaintController@create');
+    });
 });

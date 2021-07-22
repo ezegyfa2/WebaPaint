@@ -20,8 +20,9 @@ class ShapeProperty extends Model
     protected $fillable = [
         'shape_property_type_id',
         'shape_id',
-        'value'
+        'value',
     ];
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

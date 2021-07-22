@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ShapePropertyType extends Model
 {
+    use ModelHelpers;
+
     /**
      * @var array
      */

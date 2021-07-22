@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -37,5 +38,27 @@ class Paint extends Model
     public function paintShapes()
     {
         return $this->hasMany('App\Models\PaintShape');
+    }
+
+    public function getShapes()
+    {
+        return $this->paintShapes->map(function($paintShape) {
+            return $paintShape->shape;
+        });
+    }
+
+    public function addShape(int $shapeId, int $x, int $y) {
+        if (Shape::find($shapeId)->user_id == Auth::user()->id) {
+            $paintShape = new PaintShape([
+                'paint_id' => $this->id,
+                'shape_id' => $shapeId,
+                'shape_coordinate_x' => $x,
+                'shape_coordinate_y' => $y,
+            ]);
+            $paintShape->save();
+        }
+        else {
+            throw new AnotherUserShapeException($shapeId);
+        }
     }
 }

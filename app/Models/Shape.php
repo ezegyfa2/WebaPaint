@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Shape extends Model
 {
+    use ModelHelpers;
+
     /**
      * @var array
      */
@@ -56,5 +59,20 @@ class Shape extends Model
     public function shapeProperties()
     {
         return $this->hasMany('App\Models\ShapeProperty');
+    }
+
+    public function addProperty(string $propertyTypeName, string $propertyValue) {
+        $propertyType = ShapePropertyType::getByName($propertyTypeName);
+        if ($propertyType->shape_type_id == $this->shape_type_id) {
+            $newProperty = new ShapeProperty([
+                'shape_property_type_id' => $propertyType->id,
+                'shape_id' => $this->id,
+                'value' => $propertyValue,
+            ]);
+            $newProperty->save();
+        }
+        else {
+            throw new \Exception('Invalid Property type');
+        }
     }
 }
